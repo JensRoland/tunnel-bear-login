@@ -333,8 +333,9 @@
   // Let's go!
   /////////////////////////////////////////////////////////////////////////
 
-  // Lazyload the sprite when idle
-  window.requestIdleCallback(loadSprite);
+  // Lazyload the sprite when idle (Safari doesn't support requestIdleCallback)
+  const rIC = window.requestIdleCallback ?? setTimeout;
+  rIC(loadSprite);
   registerEventListeners();
 
   // Progressive enhancement
