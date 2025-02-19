@@ -25,7 +25,7 @@ I can trace a significant part of my career back to this talk and the work of pi
 
 The project is oldschool with a single HTML file, a script, and a few stylesheets.
 
-```sh
+```plaintext
 📁 public/
 ├── 📄 index.html             # Main HTML file
 ├── 📁 img/
