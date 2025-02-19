@@ -1,0 +1,10 @@
+/* Global variables */
+
+:root {
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-accent: #cce08b;
+
+  --font-sans: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-size: 16px;
+}

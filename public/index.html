@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tunnel Bear Login" />
+    <meta name="author" content="Jens Roland" />
+    <title>Tunnel Bear Login</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+
+    <!-- Social media tags -->
+    <meta property="og:title" content="Tunnel Bear Login" />
+    <meta property="og:description" content="Tunnel Bear Login" />
+    <meta property="og:url" content="https://jensroland.com/projects/bear" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tunnel Bear Login" />
+    <meta property="og:image" content="https://jensroland.com/projects/bear/screenshot.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tunnel Bear Login" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+    <link rel="preload" as="image" href="img/bear_idle.webp" />
+    <link rel="stylesheet" href="styles/main.css">
+    <script defer src="scripts/main.js"></script>
+  </head>
+  <body>
+    <main>
+
+      <form class="bear-form">
+
+        <figure>
+          <div class="bear-avatar"></div>
+        </figure>
+
+        <input placeholder="Email" autocomplete="email" type="email" value="" name="email" required="required">
+
+        <fieldset>
+          <input placeholder="Password" autocomplete="current-password" type="password" value="" name="password" required="required">
+          <button type="button" class="password-visibility" aria-label="Toggle password visibility">
+            <div class="toggle-password">Show/Hide password</div>
+          </button>
+        </fieldset>
+
+        <button type="submit">Log In</button>
+
+      </form>
+
+    </main>
+  </body>
+</html>

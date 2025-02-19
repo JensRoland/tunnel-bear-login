@@ -1,0 +1,152 @@
+@import url('variables.css');
+@import url('reset.css');
+@import url('site.css');
+@import url('animations.css');
+
+
+/* Login form styles */
+
+.bear-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+
+  /* Bear avatar */
+  --animation-function: steps(1, jump-end);
+  --time-to-watch: 150ms;
+  --time-to-peek: 200ms;
+  --time-to-peek-direct: 250ms;
+  --time-to-hide: 200ms;
+
+  > figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    
+    > .bear-avatar {
+      background-image: url('../img/bear_idle.webp');
+      background-size: contain;
+      width: 130px;
+      height: 130px;
+      border-radius: 9999px;
+      transform: translate3d(0,0,0); /* Force GPU acceleration */
+
+
+      /* Sprite animation */
+      &.sprite {
+        background-image: url('../img/bear_sprite.webp');
+        background-size: 900px;
+        background-position: -460px -160px;
+
+        &.ani-watch {
+          animation: bear-watch var(--time-to-watch) var(--animation-function) forwards;
+        }
+        &.ani-unwatch {
+          animation: bear-watch var(--time-to-watch) var(--animation-function) reverse forwards;
+        }
+        &.ani-hide {
+          animation: bear-hide var(--time-to-hide) var(--animation-function) forwards;
+        }
+        &.ani-unhide {
+          animation: bear-hide var(--time-to-hide) var(--animation-function) reverse forwards;
+        }
+        &.ani-ipeek {
+          animation: bear-ipeek var(--time-to-peek-direct) var(--animation-function) forwards;
+        }
+        &.ani-unipeek {
+          animation: bear-ipeek var(--time-to-peek-direct) var(--animation-function) reverse forwards;
+        }
+        &.ani-hpeek {
+          animation: bear-hpeek var(--time-to-peek) var(--animation-function) forwards;
+        }
+        &.ani-unhpeek {
+          animation: bear-hpeek var(--time-to-peek) var(--animation-function) reverse forwards;
+        }
+        &.ani-unhide-watch {
+          animation: bear-hide var(--time-to-hide) var(--animation-function) reverse forwards,
+                     bear-watch var(--time-to-watch) var(--animation-function) var(--time-to-hide) forwards;
+        }
+        &.ani-unipeek-watch {
+          animation: bear-ipeek var(--time-to-peek-direct) var(--animation-function) reverse forwards,
+                     bear-watch var(--time-to-watch) var(--animation-function) var(--time-to-peek-direct) forwards;
+        }
+      }
+    }
+  }
+
+
+  /* Input form fields */
+  input[type="text"], [type="email"], input[type="password"] {
+    font-family: var(--font-sans);
+    font-size: var(--font-size);
+    line-height: 1.5rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 4px;
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      border: 1px solid var(--color-accent);
+      box-shadow: 0 0 0 1px var(--color-accent);
+    }
+  }
+
+
+  /* Password input field and show/hide toggle */
+  fieldset {
+    position: relative;
+    width: 100%;
+
+    > button.password-visibility {
+      position: absolute;
+      top: 50%;
+      right: .75rem;
+      transform: translate(0, -50%);
+      line-height: 0;
+
+      > .toggle-password {
+        font-size: 0;
+        width: 1.25rem;
+        height: 1.25rem;
+        transition: transform .15s cubic-bezier(.4,0,.2,1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("data:image/svg+xml;base64,ICA8c3ZnIAogICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAKICAgIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgICBmaWxsPSJub25lIiAKICAgIHN0cm9rZT0iY3VycmVudENvbG9yIiAKICAgIHN0cm9rZVdpZHRoPSIyIiAKICAgIHN0cm9rZUxpbmVjYXA9InJvdW5kIiAKICAgIHN0cm9rZUxpbmVqb2luPSJyb3VuZCIgCiAgICBjbGFzc05hbWU9InctNSBoLTUiCiAgPgogICAgPHBhdGggZD0iTTE3Ljk0IDE3Ljk0QTEwLjA3IDEwLjA3IDAgMCAxIDEyIDIwYy03IDAtMTAtNy0xMC03YTE4LjQ1IDE4LjQ1IDAgMCAxIDUuMDYtNS45NE05LjkgNC4yNEE5LjEyIDkuMTIgMCAwIDEgMTIgNGM3IDAgMTAgNyAxMCA3YTE4LjUgMTguNSAwIDAgMS0yLjE2IDMuMTltLTYuNzItMS4wN2EzIDMgMCAxIDEtNC4yNC00LjI0IiAvPgogICAgPGxpbmUgeDE9IjEiIHkxPSIxIiB4Mj0iMjMiIHkyPSIyMyIgLz4KICA8L3N2Zz4=");
+
+        &:hover {
+          transform: translate(0, -50%), scale(1.1);
+        }
+      }
+    }
+
+    /* Change toggle (eye) icon when password is not visible */
+    &:has(input[type='password']) > button.password-visibility > .toggle-password {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyAKICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgCiAgICB2aWV3Qm94PSIwIDAgMjQgMjQiIAogICAgZmlsbD0ibm9uZSIgCiAgICBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgICBzdHJva2VXaWR0aD0iMiIgCiAgICBzdHJva2VMaW5lY2FwPSJyb3VuZCIgCiAgICBzdHJva2VMaW5lam9pbj0icm91bmQiIAogICAgY2xhc3NOYW1lPSJ3LTUgaC01IgogID4KICAgIDxwYXRoIGQ9Ik0yIDEyczMtNyAxMC03IDEwIDcgMTAgNy0zIDctMTAgNy0xMC03LTEwLTdaIiAvPgogICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMyIgLz4KICA8L3N2Zz4=");
+    }
+  }
+
+
+  /* Submit button */
+  button[type="submit"] {
+    width: 100%;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    border-radius: .5rem;
+    outline-offset: 2px;
+    background-color: var(--color-accent);
+  }
+}
+
+html.no-js {
+  .bear-form fieldset > button.password-visibility {
+    visibility: hidden;
+  }
+}
