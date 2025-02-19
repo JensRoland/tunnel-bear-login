@@ -8,18 +8,18 @@ This project recreates the charming bear animation that responds to user input a
 
 ## Background
 
-Back in 2011 Addy Osmani did an incredible talk on [Large-scale JavaScript Application Architecture](https://addyosmani.com/blog/large-scale-javascript-application-architecture/) at the 2011 jQuery Summit. Following this talk, I set out to build a JavaScript framework based on the principles he outlined. This framework was called Tomahawk and it went on to be used in production for the following ~6 years at one of the largest web sites in Denmark at the time.
+Back in 2011, Addy Osmani did an incredible talk on [Large-scale JavaScript Application Architecture](https://addyosmani.com/blog/large-scale-javascript-application-architecture/) at the jQuery Summit. Following this talk, I set out to build a JavaScript framework based on the principles he outlined. This framework, Tomahawk, went on to be used in production for the following ~6 years at what was then one of the largest web sites in Denmark.
 
 I can trace a significant part of my career back to this talk and the work of pioneers like Addy Osmani, Nicholas Zakas, Lance Arthur, Makinde Adeagbo, and Lea Verou. Suffice it to say that I am a long-time fan of Addy Osmani's work and I wanted to pay homage to that by recreating one of his projects.
 
 ## Features
 
 - Interactive bear animation that responds to email input length
-  - Accurate bear gaze tracking of all character widths
-  - Smooth animations when removing or inserting many characters at once
-  - Bear returns to idle state when the form loses focus
+  - Added: Accurate bear gaze tracking of all character widths
+  - Added: Smooth animations when removing or inserting many characters at once
+  - Added: Bear returns to idle state when the form loses focus
 - Playful hide animation when focusing on the password field
-  - More natural transitions between 'watching' and 'peeking' states
+  - Changed: More natural transitions between 'watching' and 'peeking' states
 
 ## Project Structure
 
@@ -36,7 +36,6 @@ The project is oldschool with a single HTML file, a script, and a few stylesheet
 |   └── 📄 main.js            # Form and animation logic
 └── 📁 styles/                # CSS
 ```
-
 
 ## Technical Details
 
@@ -55,11 +54,9 @@ The project is oldschool with a single HTML file, a script, and a few stylesheet
 
 ## Development
 
-1. Open `public/index.html` in your browser.
+1. Open `public/index.html` in your browser. 🍾 Party like it's 2011 🍾
 
-🍾 Party like it's 2011 🍾
-
-1. For production, upload the `public` folder to your server or CDN.
+2. For production, upload the `public` folder to your server or CDN.
 
 Or, for the best performance, run `make build` to minify, bundle and inline the assets (uses [npx](https://docs.npmjs.com/cli/v8/commands/npx) under the hood), then upload the `dist` folder to your server or CDN. You will need to change the IMAGES_PATH in the Makefile to match your server setup.
 
@@ -68,8 +65,6 @@ Or, for the best performance, run `make build` to minify, bundle and inline the 
 This project is a vanilla implementation inspired by [The Tunnel Bear](https://www.tunnelbear.com/account/login) login form created by Kadri Jibraan, and the subsequent [React implementation](https://github.com/addyosmani/tunnel-bear-login) created by Addy Osmani.
 
 Peek animations and show/hide SVGs contributed/created by [Luca Frigato](https://github.com/FrigaZzz).
-
-<a href="https://www.freepik.com/icons/bear">Favicon by Freepik</a>
 
 All remaining bear animations and design concepts are credited to the original work.
 
