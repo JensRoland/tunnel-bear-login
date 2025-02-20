@@ -1,16 +1,33 @@
-# Tunnel Bear Login Animation
+# Tunnel Bear Login Animation in < 15 kB
 
 ![Screenshot](https://jensroland.com/projects/bear/screenshot-small.jpg)
 
 A delightful login form implementation inspired by [Addy Osmani's version](https://github.com/addyosmani/tunnel-bear-login) of [The Tunnel Bear](https://www.tunnelbear.com/account/login) by Kadri Jibraan.
 
-This project recreates the charming bear animation that responds to user input and focus states.
+This project recreates the charming bear animation that responds to user input and focus states
+
+*...while using 94% less code than Addys version*
+
+*...and adding **more features***
+
+*...and being ***faster***.*
+
+|                              | [Vanilla version (this)](https://jensroland.com/projects/bear/) | [bear.addy.ie](https://bear.addy.ie/) | [Original](https://www.tunnelbear.com/account/login) (*) |
+| ---------------------------- | --------------------------------------------: | ------------------------------------: | -------------------------------------------------------: |
+| Page load size, initial load |                                         18 kB |                                362 kB |                                                   3.0 MB |
+| Page load size, total        |                                         85 kB |                                362 kB |                                                   3.0 MB |
+| - HTML, CSS, JS              |                                         13 kB |                                227 kB |                                                   2.8 MB |
+| - Images                     |                                         72 kB |                                135 kB |                                                   169 kB |
+| Lighthouse score (desktop)   |                                       100/100 |                               100/100 |                                                   93/100 |
+| Lighthouse score (mobile)    |                                       100/100 |                               100/100 |                                                   70/100 |
+
+(*) The TunnelBear (original) metrics are not comparable to the others since the login form is part of a live site with tons of unrelated styles and third party scripts.
 
 ## Background
 
-Back in 2011, Addy Osmani did an incredible talk on [Large-scale JavaScript Application Architecture](https://addyosmani.com/blog/large-scale-javascript-application-architecture/) at the jQuery Summit. Following this talk, I set out to build a JavaScript framework based on the principles he outlined. This framework, Tomahawk, went on to be used in production for the following ~6 years at one of the largest web sites in Denmark.
+In the fall of 2011, Addy Osmani gave an incredible keynote on [Large-scale JavaScript Application Architecture](https://addyosmani.com/blog/large-scale-javascript-application-architecture/) at the jQuery Summit. Following this talk, I set out to build a JavaScript framework based on the principles he outlined. This framework, which I named *Tomahawk*, went on to be used in production for the following ~6 years at one of the largest web sites in Denmark.
 
-I can trace a significant part of my career back to this talk and the work of pioneers like Addy Osmani, Nicholas Zakas, Steve Souders, Lance Arthur, Makinde Adeagbo, and Lea Verou. Suffice it to say that I am a long-time fan of Addy Osmani's work and I wanted to pay homage to that by recreating one of his projects.
+I can trace a significant part of my career back to this talk and the work of pioneers like Addy Osmani, Nicholas Zakas, Steve Souders, Lance Arthur, Makinde Adeagbo, and Lea Verou. Suffice it to say that I am a long-time fan of Addy Osmani's work and I wanted to pay homage to that by recreating one of his projects *and perhaps being a little bit cheeky about it*.
 
 ## Features
 
@@ -47,21 +64,20 @@ The project is oldschool with a single HTML file, a script, and a few stylesheet
   - Dropped Tailwind and React for better performance
   - Animation frames combined into a CSS sprite for better compression and smoother animation
   - Keyframe animation using vanilla CSS and the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) for smoother, flicker-free animations
-  - Initial page load only needs one small image, the sprite is lazyloaded on form mouseover and seamlessly sits on top of the idle image (eliminating flicker)
-  - Initial page weight of 18kB uncompressed (13kB plus images), compared to 357kB (222kB plus images) for Addys implementation as of February 19, 2025
-- Minimal state machine for bear animation states
+  - Initial page load only needs one small image, the sprite is lazyloaded on form mouseover and seamlessly sits on top of the idle image, eliminating flicker
+- Custom 'state machine' for bear animation states and transitions
 - No Node.js or build step required, for fast development and deployment
-- All logic is in one big script file instead of smaller ES modules; this is not how I would do a larger project, but it lets you open the page locally without a build step or dev server (see below).
+- All logic is in one big script file instead of smaller ES modules; this is not how you should build a larger project, but it does allow you to open the page locally without a build step or dev server (see below).
 
 ## Development
 
 1. Open `public/index.html` in a browser. 🍾 Party like it's 2011 🍾
 
-There is a `make serve` command provided just in case, but you won't need it.
+    There is a `make serve` command provided just in case, but you won't need it.
 
 2. For production, upload the `public` folder to your server or CDN.
 
-Or, for the best performance, run `make build` to minify, bundle and inline the assets (uses [npx](https://docs.npmjs.com/cli/v8/commands/npx) under the hood), then upload the `dist` folder to your server or CDN. You will need to change the IMAGES_PATH in the Makefile to match your server setup.
+    Or, for the best performance, run `make build` to minify, bundle and inline the assets (uses [npx](https://docs.npmjs.com/cli/v8/commands/npx) under the hood), then upload the `dist` folder to your server or CDN. You will need to change the IMAGES_PATH in the Makefile to match your server setup.
 
 ## Credits
 

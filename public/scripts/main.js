@@ -293,6 +293,7 @@
    * Measure the width of a text string
    * 
    * @param {string} text The text to measure
+   * 
    * @returns {number} The width of the text in pixels
    */
   let measuringContext = null; // Cache this for an extra iota of performance
