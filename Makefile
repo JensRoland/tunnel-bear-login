@@ -25,7 +25,7 @@ LINK_LEN        := $(shell printf '%s' '$(LINK_STR)' | wc -c | tr -d '[:space:]'
 # 3) The "end" offset is the first byte after LINK_STR
 LINK_END        := $(shell echo $$(( $(LINK_START) + $(LINK_LEN) )))
 
-.PHONY: build copy-images clean
+.PHONY: build copy-images clean serve
 
 # The main build target depends on:
 #   - copied images
@@ -86,3 +86,9 @@ $(DIST_DIR)/index.html: $(PUBLIC_DIR)/index.html $(CSS_MINIFIED)
 ##############################
 clean:
 	rm -rf $(DIST_DIR)
+
+##############################
+# Local dev server
+##############################
+serve:
+	npx --y serve $(PUBLIC_DIR)

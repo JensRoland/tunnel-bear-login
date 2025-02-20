@@ -28,18 +28,29 @@
     margin-bottom: 1rem;
     
     > .bear-avatar {
-      background-image: url('../img/bear_idle.webp');
-      background-size: contain;
+      background-size: 900px;
       width: 130px;
       height: 130px;
       border-radius: 9999px;
+      transform-style: preserve-3d;
       transform: translate3d(0,0,0); /* Force GPU acceleration */
 
+      /* The bear idle image is a pseudo-element behind the div, allowing
+       * us to seamlessly switch to the sprite when it loads (ie. zero flicker)
+       */
+      &::after {
+        content: "";
+        width: 130px;
+        height: 130px;
+        background-image: url('../img/bear_idle.webp');
+        background-size: contain;
+        position: absolute;
+        transform: translateZ(-1px);
+      }
 
       /* Sprite animation */
       &.sprite {
         background-image: url('../img/bear_sprite.webp');
-        background-size: 900px;
         background-position: -460px -160px;
 
         &.ani-watch {

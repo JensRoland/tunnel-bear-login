@@ -194,12 +194,13 @@
    * 
    * @param {Event} event The input event
    */
-  const handleInputEvent = function(event) {
+  const handleEmailInputEvent = function(event) {
     const input = event.target,
+          formElement = input.closest(FORM_SELECTOR),
           progress = Math.min(1, measureTextWidth(input.value) / 366),
           gaze = Math.floor(progress * (GAZE_KEYFRAMES.length-1));
 
-    animateBear(input.closest(FORM_SELECTOR), BEAR_STATES.WATCH, gaze);
+    animateBear(formElement, BEAR_STATES.WATCH, gaze);
   };
 
   /**
@@ -212,6 +213,13 @@
     const docElem = document.documentElement,
           addEvent = docElem.addEventListener.bind(docElem);
 
+    // On first mouseover/hover on the bear-form element, preload the sprite
+    addEvent('mouseover', (event) => {
+      if (! bearSpriteLoaded && event.target.closest(FORM_SELECTOR)) {
+        loadSprite();
+      }
+    });
+    
     addEvent('click', (event) => {
       if (event.target.closest('.password-visibility')) {
         return handleVisibilityToggle(event);
@@ -227,7 +235,7 @@
         const target = event.target;
         // If the email field is focused, we animate the bear watching the input
         if (target.name === 'email') {
-          return handleInputEvent(event);
+          return handleEmailInputEvent(event);
         }
 
         // If the password field is focused, we animate the bear peeking
@@ -278,7 +286,7 @@
       element.classList.add('sprite');
     });
     bearSpriteLoaded = true;
-    document.body.removeChild(fragment);
+    document.body.removeChild(div);
   };
 
   /**
@@ -333,9 +341,6 @@
   // Let's go!
   /////////////////////////////////////////////////////////////////////////
 
-  // Lazyload the sprite when idle (Safari doesn't support requestIdleCallback)
-  const rIC = window.requestIdleCallback ?? setTimeout;
-  rIC(loadSprite);
   registerEventListeners();
 
   // Progressive enhancement
