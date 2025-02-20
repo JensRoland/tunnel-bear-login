@@ -1,4 +1,4 @@
-# Tunnel Bear Login Animation in < 20 kB
+# Tunnel Bear Login Animation in 12 kB
 
 ![Screenshot](https://jensroland.com/projects/bear/screenshot-small.jpg)
 
