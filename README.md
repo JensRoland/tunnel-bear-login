@@ -1,4 +1,4 @@
-# Tunnel Bear Login Animation in < 15 kB
+# Tunnel Bear Login Animation in < 20 kB
 
 ![Screenshot](https://jensroland.com/projects/bear/screenshot-small.jpg)
 
@@ -6,7 +6,7 @@ A delightful login form implementation inspired by [Addy Osmani's version](https
 
 This project recreates the charming bear animation that responds to user input and focus states
 
-*...while using 94% less code than Addys version*
+*...while using 95% less code than Addys version*
 
 *...and adding **more features***
 
@@ -14,9 +14,9 @@ This project recreates the charming bear animation that responds to user input a
 
 |                              | [Vanilla version (this)](https://jensroland.com/projects/bear/) | [bear.addy.ie](https://bear.addy.ie/) | [Original](https://www.tunnelbear.com/account/login) (*) |
 | ---------------------------- | --------------------------------------------: | ------------------------------------: | -------------------------------------------------------: |
-| Page load size, initial load |                                         18 kB |                                362 kB |                                                   3.0 MB |
-| Page load size, total        |                                         85 kB |                                362 kB |                                                   3.0 MB |
-| - HTML, CSS, JS              |                                         13 kB |                                227 kB |                                                   2.8 MB |
+| Page load size, initial load |                                         16 kB |                                362 kB |                                                   3.0 MB |
+| Page load size, total        |                                         84 kB |                                362 kB |                                                   3.0 MB |
+| - HTML, CSS, JS              |                                         12 kB |                                227 kB |                                                   2.8 MB |
 | - Images                     |                                         72 kB |                                135 kB |                                                   169 kB |
 | Lighthouse score (desktop)   |                                       100/100 |                               100/100 |                                                   93/100 |
 | Lighthouse score (mobile)    |                                       100/100 |                               100/100 |                                                   70/100 |
@@ -40,7 +40,7 @@ I can trace a significant part of my career back to this talk and the work of pi
 
 ## Project Structure
 
-The project is oldschool with a single HTML file, a script, and a few stylesheets.
+The project is oldschool with a single HTML file, some JavaScript files, and a few stylesheets. No `node_modules` or build steps required. 🍾 Party like it's 2011 🍾
 
 ```plaintext
 📁 public/
@@ -50,14 +50,18 @@ The project is oldschool with a single HTML file, a script, and a few stylesheet
 |   ├── 🐻 bear_sprite.webp   # Bear animation sprite sheet
 |   └── 🐻 favicon-32x32.png  # Favicon
 ├── 📁 scripts/
-|   └── 📄 main.js            # Form and animation logic
-└── 📁 styles/                # CSS
+|   ├── 📄 main.js            # Main JS file
+|   └── ...
+└── 📁 styles/
+    ├── 📄 main.css           # Main CSS file
+    └── ...
 ```
 
 ## Technical Details
 
 - Built with semantic HTML, vanilla JS and modern CSS for accessibility, readability, and performance
 - Progressive Enhancement: Login form works as expected without JS
+- Modular architecture with ES6 modules
 - Text width measured with Canvas for accurate bear gaze tracking
 - Performance optimizations:
   - Images resized to native 1x resolution and converted to .webp for smaller file sizes
@@ -67,17 +71,16 @@ The project is oldschool with a single HTML file, a script, and a few stylesheet
   - Initial page load only needs one small image, the sprite is lazyloaded on form mouseover and seamlessly sits on top of the idle image, eliminating flicker
 - Custom 'state machine' for bear animation states and transitions
 - No Node.js or build step required, for fast development and deployment
-- All logic is in one big script file instead of smaller ES modules; this is not how you should build a larger project, but it does allow you to open the page locally without a build step or dev server (see below).
 
 ## Development
 
-1. Open `public/index.html` in a browser. 🍾 Party like it's 2011 🍾
+1. Run `make serve` and open <http://localhost:3000> in a browser.
 
-    There is a `make serve` command provided just in case, but you won't need it.
+    Note: this uses [npx](https://docs.npmjs.com/cli/v8/commands/npx) under the hood.
 
 2. For production, upload the `public` folder to your server or CDN.
 
-    Or, for the best performance, run `make build` to minify, bundle and inline the assets (uses [npx](https://docs.npmjs.com/cli/v8/commands/npx) under the hood), then upload the `dist` folder to your server or CDN. You will need to change the IMAGES_PATH in the Makefile to match your server setup.
+    Or, for the best performance, run `make build` to minify, bundle and inline the assets, then upload the `dist` folder to your server or CDN. You will need to change the `IMAGES_PATH` in the Makefile to match your server setup.
 
 ## Credits
 

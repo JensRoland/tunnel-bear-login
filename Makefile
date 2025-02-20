@@ -34,32 +34,32 @@ LINK_END        := $(shell echo $$(( $(LINK_START) + $(LINK_LEN) )))
 #   - the final index.html (with CSS inlined)
 build: copy-images $(JS_MINIFIED) $(CSS_MINIFIED) $(DIST_DIR)/index.html
 
-##############################
+#################################
 # 1) Copy images
-##############################
+#################################
 copy-images:
 	@mkdir -p $(IMAGES_DIST_DIR)
 	@cp -r $(IMAGES_SRC_DIR)/* $(IMAGES_DIST_DIR)
 
-##############################
+#################################
 # 2) Minify JS
-##############################
+#################################
 $(JS_MINIFIED): $(SCRIPTS_DIR)/main.js
 	@mkdir -p $(DIST_DIR)/scripts
-	@npx --yes uglify-js --compress -- $< > $@
+	@npx --yes esbuild --minify --bundle --format=esm --log-level=error $< --outfile=$@
 
-##############################
+#################################
 # 3) Minify CSS
-##############################
+#################################
 $(CSS_MINIFIED): $(STYLES_DIR)/main.css
 	@mkdir -p $(DIST_DIR)/styles
 	@npx --yes lightningcss-cli --minify --bundle $< -o $@
 	@# Replace image paths in CSS
 	@npx --yes replace-in-files-cli --string "../img/" --replacement "$(IMAGES_PATH)/" $@
 
-##############################
+#################################
 # 4) Inline CSS in index.html
-##############################
+#################################
 $(DIST_DIR)/index.html: $(PUBLIC_DIR)/index.html $(CSS_MINIFIED)
 	@mkdir -p $(DIST_DIR)
 
@@ -81,14 +81,21 @@ $(DIST_DIR)/index.html: $(PUBLIC_DIR)/index.html $(CSS_MINIFIED)
 
 	@echo "Built $(DIST_DIR)"
 
-##############################
+#################################
 # Cleanup
-##############################
+#################################
 clean:
-	rm -rf $(DIST_DIR)
+	@rm -rf $(DIST_DIR)
 
-##############################
+#################################
 # Local dev server
-##############################
+#################################
 serve:
-	npx --y serve $(PUBLIC_DIR)
+	@npx --y serve $(PUBLIC_DIR)
+
+#################################
+# Local dev server - dist version
+#################################
+serve-dist: IMAGES_PATH = /img
+serve-dist: clean build
+	@npx --y serve $(DIST_DIR)
